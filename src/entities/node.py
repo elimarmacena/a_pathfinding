@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, location_x:int, location_y:int, value_g:int, value_h:int, father=None):
+    def __init__(self, location_x:int, location_y:int, value_g:int, value_h:int = 0, father=None):
         self.location_x = location_x
         self.location_y = location_y
         self.value_g = value_g # movement cost
