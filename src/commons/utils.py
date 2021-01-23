@@ -16,3 +16,10 @@ def create_matrix(input_file):
 def manhattan_distance(position_x:List[int], position_y:List[int]):
     value_m = abs(position_x[0] - position_y[0]) + abs(position_x[1] - position_y[1])
     return value_m
+
+def find_lower_value(node_list):
+    keeper = node_list[0]
+    for current_node in node_list:
+        if(keeper.get_value_f() > current_node.get_value_f()):
+            keeper = current_node
+    return keeper
