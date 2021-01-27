@@ -39,7 +39,6 @@ def find_path(work_map:Map):
     #End WHILE
     if(end_finded):
         temp_path = list()
-        temp_path.append(current_node)
         previous_node = current_node.get_father()
         while(previous_node.get_location() != work_map.get_node_begin().get_location()):
             temp_path.append(previous_node.get_location())
