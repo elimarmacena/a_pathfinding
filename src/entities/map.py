@@ -1,12 +1,14 @@
 from typing import List
 from entities.node import Node
 from commons.utils import manhattan_distance
+from commons import map_symbols
 class Map:
     def __init__(self, node_begin:Node, node_end:Node, surface:List[List[int]] = list()):
         self.surface = surface
         self.node_begin = node_begin
         self.node_end = node_end
         self.node_indexes = dict()
+        self.step_nodes = list()
         self.__create_indexes()
 
     def get_surface(self):
@@ -21,6 +23,30 @@ class Map:
     def get_node_indexes(self):
         return self.node_indexes
     
+    def get_step_nodes(self):
+        return self.step_nodes
+
+    def set_setep_nodes(self,steps):
+        self.step_nodes = steps.copy()
+
+    def show_map_path(self):
+        path_string =  ''
+        for x in range(len(self.surface)):
+            for y in range(len(self.surface[x])):
+                if([x,y] == self.node_begin.get_location()):
+                    path_string = path_string + map_symbols.START_CHARACTER + '\t'
+                elif([x,y] == self.node_end.get_location()):
+                    path_string = path_string + map_symbols.END_CHARACTER + '\t'
+                else:
+                    if([x,y] in self.step_nodes):
+                        path_string = path_string + map_symbols.PATH_CHARACTER + '\t'
+                    elif(self.surface[x][y] == 1):
+                        path_string = path_string + map_symbols.BLOCK_CHARACTER + '\t'
+                    else:
+                        path_string = path_string + map_symbols.FREE_CHARACTER + '\t'
+            path_string = path_string + '\n'
+        return path_string
+
     # informations on diagonal will be ignored
     def get_neighbors(self,center_node:Node):
         middle_top      = self.node_indexes[(center_node.get_location_x() - 1, center_node.get_location_y())] if center_node.get_location_x() - 1 >= 0 else None
@@ -46,3 +72,5 @@ class Map:
                 )
                 postion_tuple = (x_position,y_position)
                 self.node_indexes[postion_tuple] = current_node
+            #End FOR
+        #END FOR
