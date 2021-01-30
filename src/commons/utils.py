@@ -12,7 +12,9 @@ def create_matrix(input_file):
         matrix_output.append(integers_line)
     return matrix_output
 
-""" Return the manhattan value; recive two list of integer presenting two positions"""
+""" 
+    Return the manhattan value; recive two list of integer presenting two positions
+"""
 def manhattan_distance(position_x:List[int], position_y:List[int]):
     value_m = abs(position_x[0] - position_y[0]) + abs(position_x[1] - position_y[1])
     return value_m
