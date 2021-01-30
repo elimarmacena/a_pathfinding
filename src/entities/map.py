@@ -27,7 +27,7 @@ class Map:
         return self.step_nodes
 
     def set_setep_nodes(self,steps):
-        self.step_nodes = steps.copy()
+        self.step_nodes = [self.node_begin.get_location()] + steps.copy() + [self.node_end.get_location()]
 
     def show_map_path(self):
         path_string =  ''

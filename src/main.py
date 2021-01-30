@@ -31,5 +31,6 @@ def main():
     path = find_path(input_map)
     input_map.set_setep_nodes(path)
     print(input_map.show_map_path())
+    print(input_map.get_step_nodes())
 if __name__ == "__main__":
     main()
